@@ -5,10 +5,14 @@ A Django app for students to log and track milestone activities with filtering, 
 ## Quick Start
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
+
+If you already have a virtual environment, activate it first and then run the install command.
 
 Open http://127.0.0.1:8000 in your browser.
 
