@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register | Studor PathCredit Logger{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+    <h1>Create account</h1>
+    <p class="subtext">Start logging your milestone activities.</p>
+
+    <form id="register-form" class="form-stack" novalidate>
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" minlength="8" required />
+
+        <button type="submit" class="btn primary">Register</button>
+    </form>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+    <p class="switch-link">Already have an account? <a href="/login/">Login</a></p>
+</section>
+
+<script src="{% static 'js/register.js' %}"></script>
+{% endblock %}

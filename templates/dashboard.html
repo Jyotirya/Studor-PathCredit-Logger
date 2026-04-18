@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard | Studor PathCredit Logger{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <header class="dashboard-header">
+        <div>
+            <h1>Studor PathCredit Logger</h1>
+            <p id="welcome-text" class="subtext">Your milestone tracker.</p>
+        </div>
+        <button id="logout-btn" class="btn danger">Logout</button>
+    </header>
+
+    <section class="card">
+        <h2>Add Activity</h2>
+        <form id="activity-form" class="grid-form" novalidate>
+            <div>
+                <label for="activity-name">Activity name</label>
+                <input id="activity-name" name="name" type="text" required maxlength="200" />
+            </div>
+            <div>
+                <label for="activity-category">Category</label>
+                <select id="activity-category" name="category" required>
+                    <option value="Academic">Academic</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Sports">Sports</option>
+                </select>
+            </div>
+            <div>
+                <label for="activity-date">Date</label>
+                <input id="activity-date" name="date" type="date" required />
+            </div>
+            <div class="button-cell">
+                <button type="submit" class="btn primary">Save Activity</button>
+            </div>
+        </form>
+        <p id="form-message" class="message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+        <div class="toolbar">
+            <div>
+                <label for="filter-category">Filter</label>
+                <select id="filter-category">
+                    <option value="All">All</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Sports">Sports</option>
+                </select>
+            </div>
+            <div>
+                <label for="sort-order">Sort</label>
+                <select id="sort-order">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                </select>
+            </div>
+            <div class="search-box">
+                <label for="search-name">Search</label>
+                <input id="search-name" type="search" placeholder="Search by activity name" />
+            </div>
+        </div>
+
+        <p id="list-message" class="message" role="status" aria-live="polite"></p>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="activity-list"></tbody>
+            </table>
+        </div>
+
+        <div id="pagination" class="pagination"></div>
+    </section>
+</section>
+
+<div id="edit-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content">
+        <h3>Edit Activity</h3>
+        <form id="edit-form" class="form-stack" novalidate>
+            <input type="hidden" id="edit-id" />
+
+            <label for="edit-name">Activity name</label>
+            <input id="edit-name" type="text" required maxlength="200" />
+
+            <label for="edit-category">Category</label>
+            <select id="edit-category" required>
+                <option value="Academic">Academic</option>
+                <option value="Technical">Technical</option>
+                <option value="Cultural">Cultural</option>
+                <option value="Sports">Sports</option>
+            </select>
+
+            <label for="edit-date">Date</label>
+            <input id="edit-date" type="date" required />
+
+            <div class="modal-actions">
+                <button type="button" id="cancel-edit" class="btn">Cancel</button>
+                <button type="submit" class="btn primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
